@@ -1,0 +1,16 @@
+<Project>
+    <PropertyGroup>
+        <Version>0.9.0.0</Version>
+        <Authors>Rogier van der Hee</Authors>
+        <Company>Ix Technologies B.V.</Company>
+        <Product>Blazor Cycle of Life</Product>
+        <Copyright>2023 Rogier van der Hee</Copyright>
+
+        <!-- overall solution settings -->
+        <LangVersion>latest</LangVersion>
+        <TargetFramework>net7.0</TargetFramework>
+        <SuppressNETCoreSdkPreviewMessage>true</SuppressNETCoreSdkPreviewMessage>
+        <WarningsAsErrors>RZ2012;RZ10012</WarningsAsErrors>
+        <NoWarn>BL0007;NUnit2045</NoWarn>
+    </PropertyGroup>
+</Project>
