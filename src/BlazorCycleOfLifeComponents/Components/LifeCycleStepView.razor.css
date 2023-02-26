@@ -1,0 +1,19 @@
+.life-cycle-step {
+    border: 2px solid var(--highlight-color);
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    min-width: 15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    user-select: none;
+}
+
+    .life-cycle-step .counter-container {
+        align-self: center;
+        text-align: center;
+    }
+
+    .life-cycle-step h3 {
+        text-align: center;
+    }

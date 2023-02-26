@@ -2,7 +2,6 @@
     <PropertyGroup>
         <Version>0.9.0.0</Version>
         <Authors>Rogier van der Hee</Authors>
-        <Company>Ix Technologies B.V.</Company>
         <Product>Blazor Cycle of Life</Product>
         <Copyright>2023 Rogier van der Hee</Copyright>
 

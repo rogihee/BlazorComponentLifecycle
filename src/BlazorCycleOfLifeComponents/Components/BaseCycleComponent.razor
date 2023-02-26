@@ -1,56 +1,79 @@
 @implements IDisposable
 @implements IAsyncDisposable
 
+@inject LifeCycleService LifeCycleService
+
 @code {
+    private readonly List<LifeCycleEvent> _events = new();
+
+    public int Count(LifeCycleStep step) => _events.Count(x => x.Step == step);
+
+    public override Task SetParametersAsync(ParameterView parameters)
+    {
+        AddEvent(LifeCycleStep.SetParametersAsync, parameters);
+        return base.SetParametersAsync(parameters);
+    }
 
     protected override void OnInitialized()
     {
+        AddEvent(LifeCycleStep.OnInitialized);
         base.OnInitialized();
     }
 
     protected override Task OnInitializedAsync()
     {
-        return base.OnInitializedAsync();
+        AddEvent(LifeCycleStep.OnInitialized);
+        return Task.CompletedTask;
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
-        base.OnAfterRender(firstRender);
+        AddEvent(LifeCycleStep.OnAfterRender, firstRender);
     }
 
     protected override Task OnAfterRenderAsync(bool firstRender)
     {
-        return base.OnAfterRenderAsync(firstRender);
+        AddEvent(LifeCycleStep.OnAfterRender, firstRender);
+        return Task.CompletedTask;
     }
 
     protected override void OnParametersSet()
     {
-        base.OnParametersSet();
+        AddEvent(LifeCycleStep.OnParametersSet);
+
     }
 
     protected override Task OnParametersSetAsync()
     {
-        return base.OnParametersSetAsync();
-    }
-
-    public override Task SetParametersAsync(ParameterView parameters)
-    {
-        return base.SetParametersAsync(parameters);
+        AddEvent(LifeCycleStep.OnParametersSet);
+        return Task.CompletedTask;
     }
 
     protected override bool ShouldRender()
     {
-        return base.ShouldRender();
+        var res = base.ShouldRender();
+        AddEvent(LifeCycleStep.ShouldRender, res);
+        return res;
     }
 
     public void Dispose()
     {
-        throw new NotImplementedException();
+        AddEvent(LifeCycleStep.Dispose);
     }
 
     public ValueTask DisposeAsync()
     {
-        throw new NotImplementedException();
+        AddEvent(LifeCycleStep.Dispose);
+        return ValueTask.CompletedTask;
+    }
+
+    private void AddEvent(LifeCycleStep step, object parameter = null)
+    {
+        _events.Add(new LifeCycleEvent
+        {
+            Step = step,
+            Parameter = parameter
+        });
     }
 
 }

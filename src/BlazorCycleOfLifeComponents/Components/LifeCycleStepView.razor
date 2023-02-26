@@ -1,0 +1,18 @@
+
+<div class="life-cycle-step">
+    <h3>@Step</h3>
+    <div class="counter-container">
+        <Counter Count="@Count"/>
+    </div>
+</div>
+
+
+@code {
+
+    [Parameter, EditorRequired]
+    public LifeCycleStep Step { get; set; }
+
+    [Parameter, EditorRequired]
+    public int Count { get; set; }
+
+}

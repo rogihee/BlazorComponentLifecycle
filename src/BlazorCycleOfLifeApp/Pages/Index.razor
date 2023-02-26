@@ -1,0 +1,32 @@
+﻿@page "/"
+
+@inject LifeCycleService LifeCycleService
+<h1>Blazor Cycle of Life</h1>
+
+<SplitView>
+    <LeftContent>
+        <CycleButton @ref="@CurrentRef" OnClick="HandleCount">Count</CycleButton>
+
+        Counter: @Count
+    </LeftContent>
+    <RightContent>
+        <LifeCycleView View="@CurrentRef"/>
+    </RightContent>
+</SplitView>
+
+@code
+{
+    private CycleButton CurrentRef { get; set; }
+
+    protected override void OnInitialized()
+    {
+        
+    }
+
+    private int Count { get; set; }
+
+    private void HandleCount()
+    {
+        Count++;
+    }
+}

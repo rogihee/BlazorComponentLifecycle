@@ -2,10 +2,10 @@
 
 public enum LifeCycleStep
 {
+    SetParametersAsync,
     OnInitialized,
     OnParametersSet,
     OnAfterRender,
     ShouldRender,
-    SetParametersAsync,
     Dispose
 }

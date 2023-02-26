@@ -1,0 +1,24 @@
+<div class="split-view">
+    <div class="left-column">
+        @LeftContent
+    </div>
+    <div class="splitter">
+
+    </div>
+    <div class="right-column">
+        @RightContent
+    </div>
+</div>
+@* 
+    Implement draggable areas
+    https://jsfiddle.net/zabh8jev/ 
+        
+*@
+@code
+{   
+    [Parameter]
+    public RenderFragment LeftContent { get; set; }
+
+    [Parameter]
+    public RenderFragment RightContent { get; set; }
+}

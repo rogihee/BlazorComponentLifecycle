@@ -1,0 +1,30 @@
+.split-view {
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 6px 1fr;
+    grid-template-rows: 1fr;
+    height: 90vh;
+}
+
+.left-column, 
+.right-column {
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: lightgray;
+}
+
+.splitter {
+    width: 20px;
+    padding: 0;
+    cursor: ew-resize;
+    flex: 0 0 auto;
+}
+
+    .splitter::before {
+        content: '';
+        display: block;
+        width: 6px;
+        height: 100%;
+        background: red;
+        margin: 0 auto;
+    }

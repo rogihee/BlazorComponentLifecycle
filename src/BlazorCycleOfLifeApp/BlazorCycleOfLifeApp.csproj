@@ -9,8 +9,4 @@
     <ProjectReference Include="..\BlazorCycleOfLifeComponents\BlazorCycleOfLifeComponents.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\" />
-  </ItemGroup>
-
 </Project>

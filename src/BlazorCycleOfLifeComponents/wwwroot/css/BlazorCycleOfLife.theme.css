@@ -1,12 +1,12 @@
 :root {
     --background-color: #C0C0C0;
-    --highlight-color: aqua;
+    --highlight-color: darkgrey;
 }
 
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Let an element's outerwidth match width */
 }
 
 html {

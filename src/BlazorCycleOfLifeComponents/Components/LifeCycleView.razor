@@ -1,0 +1,38 @@
+@implements IDisposable
+@inject LifeCycleService LifeCycleService
+
+<div class="life-cycle-view">
+    @if (View != null)
+    {
+        <LifeCycleStepView Step="LifeCycleStep.SetParametersAsync"
+                           Count="@View.Count(LifeCycleStep.OnInitialized)"/>
+        <LifeCycleStepView Step="LifeCycleStep.OnInitialized"
+                           Count="@View.Count(LifeCycleStep.OnInitialized)"/>
+        <LifeCycleStepView Step="LifeCycleStep.OnParametersSet"
+                           Count="@View.Count(LifeCycleStep.OnParametersSet)" />
+        <LifeCycleStepView Step="LifeCycleStep.OnAfterRender"
+                           Count="@View.Count(LifeCycleStep.OnAfterRender)" />
+        <LifeCycleStepView Step="LifeCycleStep.ShouldRender"
+                           Count="@View.Count(LifeCycleStep.ShouldRender)" />
+    }
+    else
+    {
+        <h3>No View selected</h3>
+    }
+</div>
+
+@code
+{
+    [Parameter]
+    public BaseCycleComponent View { get; set; }
+
+    protected override void OnInitialized()
+    {
+        // CycleOfLifeService.CurrentChanged += StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        // CycleOfLifeService.CurrentChanged -= StateHasChanged();
+    }
+}
