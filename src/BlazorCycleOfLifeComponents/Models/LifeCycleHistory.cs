@@ -1,4 +1,6 @@
-﻿namespace BlazorCycleOfLifeComponents.Models;
+﻿using System.Reflection.Metadata;
+
+namespace BlazorCycleOfLifeComponents.Models;
 
 // If you think about records here:
 //
@@ -14,19 +16,22 @@ public class LifeCycleEvent
     public object Parameter { get; set; }
 }
 
-//public class LifeCycleComponent
-//{
-//    private readonly List<LifeCycleEvent> _events = new();
+public class LifeCycleHistory
+{
+    private readonly List<LifeCycleEvent> _events = new();
 
-//    public BaseCycleComponent Component { get; set; }
+    public int InstanceId { get; set; }
+    public Type ComponentType { get; set; }
 
-//    public int Count(LifeCycleStep step) => _events.Count(x => x.Step == step);
+    public int Count(LifeCycleStep step) => _events.Count(x => x.Step == step);
 
-//    public void AddEvent(LifeCycleStep step)
-//    {
-//        _events.Add(new LifeCycleEvent
-//        {
-//            Step = step
-//        });
-//    }
-//}
+    public void AddEvent(LifeCycleStep step, object parameter = null)
+    {
+        _events.Add(new LifeCycleEvent
+        {
+            Step = step,
+            Parameter = parameter,
+            TimeStamp = DateTimeOffset.Now
+        });
+    }
+}

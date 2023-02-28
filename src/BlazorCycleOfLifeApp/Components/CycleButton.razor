@@ -1,4 +1,6 @@
-﻿@inherits BaseCycleComponent
+﻿@implements IHandleEvent
+
+@inherits BaseCycleComponent
 
 <button @onclick="@OnClick">@ChildContent</button>
 
@@ -8,4 +10,6 @@
     public EventCallback OnClick { get; set; }
     [Parameter]
     public RenderFragment ChildContent { get; set; }
+
+    Task IHandleEvent.HandleEventAsync(EventCallbackWorkItem callback, object arg) => callback.InvokeAsync(arg);
 }

@@ -6,74 +6,68 @@
 @code {
     private readonly List<LifeCycleEvent> _events = new();
 
+    public LifeCycleHistory LifeCycleHistory { get; set; }
+
     public int Count(LifeCycleStep step) => _events.Count(x => x.Step == step);
 
     public override Task SetParametersAsync(ParameterView parameters)
     {
-        AddEvent(LifeCycleStep.SetParametersAsync, parameters);
+        // this is the first method called in the life cycle, register here
+        LifeCycleHistory ??= LifeCycleService.Register(this);
+        LifeCycleHistory.AddEvent(LifeCycleStep.SetParametersAsync, parameters);
         return base.SetParametersAsync(parameters);
     }
 
-    protected override void OnInitialized()
-    {
-        AddEvent(LifeCycleStep.OnInitialized);
-        base.OnInitialized();
-    }
+    //protected override void OnInitialized()
+    //{
+    //    AddEvent(LifeCycleStep.OnInitialized);
+    //    base.OnInitialized();
+    //}
 
     protected override Task OnInitializedAsync()
     {
-        AddEvent(LifeCycleStep.OnInitialized);
+        LifeCycleHistory.AddEvent(LifeCycleStep.OnInitialized);
         return Task.CompletedTask;
     }
 
-    protected override void OnAfterRender(bool firstRender)
-    {
-        AddEvent(LifeCycleStep.OnAfterRender, firstRender);
-    }
+    //protected override void OnAfterRender(bool firstRender)
+    //{
+    //    AddEvent(LifeCycleStep.OnAfterRender, firstRender);
+    //}
 
     protected override Task OnAfterRenderAsync(bool firstRender)
     {
-        AddEvent(LifeCycleStep.OnAfterRender, firstRender);
+        LifeCycleHistory.AddEvent(LifeCycleStep.OnAfterRender, firstRender);
         return Task.CompletedTask;
     }
 
-    protected override void OnParametersSet()
-    {
-        AddEvent(LifeCycleStep.OnParametersSet);
-
-    }
+    //protected override void OnParametersSet()
+    //{
+    //    AddEvent(LifeCycleStep.OnParametersSet);
+    //}
 
     protected override Task OnParametersSetAsync()
     {
-        AddEvent(LifeCycleStep.OnParametersSet);
+        LifeCycleHistory.AddEvent(LifeCycleStep.OnParametersSet);
         return Task.CompletedTask;
     }
 
     protected override bool ShouldRender()
     {
         var res = base.ShouldRender();
-        AddEvent(LifeCycleStep.ShouldRender, res);
+        LifeCycleHistory.AddEvent(LifeCycleStep.ShouldRender, res);
         return res;
     }
 
     public void Dispose()
     {
-        AddEvent(LifeCycleStep.Dispose);
+        LifeCycleHistory.AddEvent(LifeCycleStep.Dispose);
     }
 
     public ValueTask DisposeAsync()
     {
-        AddEvent(LifeCycleStep.Dispose);
+        LifeCycleHistory.AddEvent(LifeCycleStep.Dispose);
         return ValueTask.CompletedTask;
-    }
-
-    private void AddEvent(LifeCycleStep step, object parameter = null)
-    {
-        _events.Add(new LifeCycleEvent
-        {
-            Step = step,
-            Parameter = parameter
-        });
     }
 
 }

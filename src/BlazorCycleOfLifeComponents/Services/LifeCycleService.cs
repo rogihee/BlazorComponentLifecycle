@@ -2,19 +2,21 @@
 
 public class LifeCycleService
 {
-    public List<BaseCycleComponent> Components { get; init; } = new();
+    private static int _instanceCounter = 0;
 
-    public void Register(BaseCycleComponent component)
+    public List<LifeCycleHistory> Components { get; init; } = new();
+
+    public LifeCycleHistory Register<T>(T component) where T: BaseCycleComponent
     {
         ArgumentNullException.ThrowIfNull(component);
-        if (!Components.Contains(component))
+        var res = new LifeCycleHistory
         {
-            Components.Add(component);
-        }
-        if (Current == null)
-        {
-            Current = component;
-        }
+            ComponentType = typeof(T),
+            InstanceId = _instanceCounter++
+        };
+        Components.Add(res);
+        Current ??= component;
+        return res;
     } 
 
     private BaseCycleComponent _current;

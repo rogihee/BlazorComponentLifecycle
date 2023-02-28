@@ -5,7 +5,7 @@
     @if (View != null)
     {
         <LifeCycleStepView Step="LifeCycleStep.SetParametersAsync"
-                           Count="@View.Count(LifeCycleStep.OnInitialized)"/>
+                           Count="@View.Count(LifeCycleStep.SetParametersAsync)"/>
         <LifeCycleStepView Step="LifeCycleStep.OnInitialized"
                            Count="@View.Count(LifeCycleStep.OnInitialized)"/>
         <LifeCycleStepView Step="LifeCycleStep.OnParametersSet"
@@ -14,6 +14,8 @@
                            Count="@View.Count(LifeCycleStep.OnAfterRender)" />
         <LifeCycleStepView Step="LifeCycleStep.ShouldRender"
                            Count="@View.Count(LifeCycleStep.ShouldRender)" />
+        <LifeCycleStepView Step="LifeCycleStep.Dispose"
+                           Count="@View.Count(LifeCycleStep.Dispose)" />
     }
     else
     {
@@ -24,7 +26,7 @@
 @code
 {
     [Parameter]
-    public BaseCycleComponent View { get; set; }
+    public LifeCycleHistory View { get; set; }
 
     protected override void OnInitialized()
     {

@@ -5,12 +5,12 @@
 
 <SplitView>
     <LeftContent>
-        <CycleButton @ref="@CurrentRef" OnClick="HandleCount">Count</CycleButton>
+        <CycleButton @ref="@CurrentRef" OnClick="@HandleCount">Count</CycleButton>
 
         Counter: @Count
     </LeftContent>
     <RightContent>
-        <LifeCycleView View="@CurrentRef"/>
+        <LifeCycleView View="@CurrentRef?.LifeCycleHistory"/>
     </RightContent>
 </SplitView>
 
