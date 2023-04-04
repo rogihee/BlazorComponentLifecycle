@@ -1,0 +1,20 @@
+﻿@inherits BaseCycleComponent
+@implements IDisposable
+
+@inject StateService StateService
+
+<h3>Count: @StateService.SharedCounter</h3>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        StateService.OnChange += StateHasChanged;
+    }
+
+    public new void Dispose()
+    {
+        base.Dispose();
+        StateService.OnChange -= StateHasChanged;
+    }
+}

@@ -2,14 +2,19 @@
 
 @inherits BaseCycleComponent
 
-<button @onclick="@OnClick">@ChildContent</button>
+<button @onclick="@EventUtil.AsNonRenderingEventHandler(HandleClick1)">@ChildContent</button>
 
 @code {
 
     [Parameter]
     public EventCallback OnClick { get; set; }
+
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
     Task IHandleEvent.HandleEventAsync(EventCallbackWorkItem callback, object arg) => callback.InvokeAsync(arg);
+
+    private void HandleClick1()
+    {
+    }
 }
