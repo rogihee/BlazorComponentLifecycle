@@ -33,6 +33,12 @@
         // CycleOfLifeService.CurrentChanged += StateHasChanged();
     }
 
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        Console.WriteLine("View: " + View);
+    }
+
     public void Dispose()
     {
         // CycleOfLifeService.CurrentChanged -= StateHasChanged();

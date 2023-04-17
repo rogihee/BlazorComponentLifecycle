@@ -1,4 +1,4 @@
-<div class="counter">
+<div class="counter @(ShowAnimation? "pulse" : "")">
     @Count
 </div>
 
@@ -7,5 +7,26 @@
 {
     [Parameter, EditorRequired]
     public int Count { get; set; }
+
+    private bool ShowAnimation { get; set; } = true;
+
+    protected override void OnParametersSet()
+    {
+        ShowAnimation = true;
+        //if (!ShowAnimation)
+        //{
+        //    ShowAnimation = true;
+        //    StateHasChanged();
+        //}
+    }
     
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (ShowAnimation)
+        {
+            await Task.Delay(500);
+            ShowAnimation = false;
+            StateHasChanged();
+        }
+    }
 }

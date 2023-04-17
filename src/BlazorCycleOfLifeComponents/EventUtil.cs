@@ -5,8 +5,7 @@ public static class EventUtil
     public static Action AsNonRenderingEventHandler(Action callback)
         => new SyncReceiver(callback).Invoke;
 
-    public static Action<TValue> AsNonRenderingEventHandler<TValue>(
-        Action<TValue> callback)
+    public static Action<TValue> AsNonRenderingEventHandler<TValue>(Action<TValue> callback)
         => new SyncReceiver<TValue>(callback).Invoke;
 
     public static Func<Task> AsNonRenderingEventHandler(Func<Task> callback)

@@ -12,9 +12,13 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    Task IHandleEvent.HandleEventAsync(EventCallbackWorkItem callback, object arg) => callback.InvokeAsync(arg);
-
-    private void HandleClick1()
+    private async Task HandleClick1()
     {
+        if (OnClick.HasDelegate)
+        {
+            await OnClick.InvokeAsync();
+        }
     }
+
+    Task IHandleEvent.HandleEventAsync(EventCallbackWorkItem callback, object arg) => callback.InvokeAsync(arg);
 }

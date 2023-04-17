@@ -1,0 +1,15 @@
+﻿:root {
+    /* todo: adjust these values to feast color scheme */
+    --brand-color: #018fbf;
+    --brand-color-lighter: #aed4e5;
+    --brand-color-light: #3C96D5;
+    --brand-color-dark: #0d55ac;
+    --brand-color-darker: #162e6c;
+}
+
+body {
+}
+
+button {
+
+}

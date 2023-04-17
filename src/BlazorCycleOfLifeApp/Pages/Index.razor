@@ -5,7 +5,9 @@
 
 <SplitView>
     <LeftContent>
-        <CycleButton @ref="@CurrentRef" OnClick="@HandleCount">Count</CycleButton>
+        <CycleButton @ref="@CurrentRef" OnClick="@HandleCount">
+            Press me
+        </CycleButton>
 
         Counter: @Count
     </LeftContent>
@@ -16,7 +18,7 @@
 
 @code
 {
-    private CycleButton CurrentRef { get; set; }
+    private BaseCycleComponent CurrentRef { get; set; }
 
     protected override void OnInitialized()
     {
