@@ -1,5 +1,4 @@
 ﻿@inherits BaseCycleComponent
-@implements IDisposable
 
 @inject StateService StateService
 
@@ -12,9 +11,9 @@
         StateService.OnChange += StateHasChanged;
     }
 
-    public new void Dispose()
+    public override async ValueTask DisposeAsync()
     {
-        base.Dispose();
+        await base.DisposeAsync();
         StateService.OnChange -= StateHasChanged;
     }
 }

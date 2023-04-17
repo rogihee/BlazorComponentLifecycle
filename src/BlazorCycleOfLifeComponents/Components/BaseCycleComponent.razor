@@ -42,7 +42,7 @@
         return res;
     }
 
-    public ValueTask DisposeAsync()
+    public virtual ValueTask DisposeAsync()
     {
         LifeCycleHistory.AddEvent(LifeCycleStep.Dispose);
         return ValueTask.CompletedTask;

@@ -3,14 +3,16 @@
     display: grid;
     grid-template-columns: 1fr 6px 1fr;
     grid-template-rows: 1fr;
-    height: 90vh;
+    height: 92vh;
 }
 
-.left-column, 
+.left-column,
 .right-column {
     padding: 1rem;
     border-radius: 1rem;
     background-color: lightgray;
+    background: rgb(247,247,247);
+    background: linear-gradient(180deg, rgba(247,247,247,1) 0%, rgba(242,242,242,1) 24%, rgba(232,232,232,1) 100%);
 }
 
 .splitter {
@@ -25,6 +27,6 @@
         display: block;
         width: 6px;
         height: 100%;
-        background: red;
+        /*background: red;*/
         margin: 0 auto;
     }

@@ -1,0 +1,8 @@
+﻿.demo-list > li:hover {
+    margin: 1rem;
+    background: var(--brand-color-light);
+}
+
+.demo-list > ol {
+    margin: 1rem;
+}

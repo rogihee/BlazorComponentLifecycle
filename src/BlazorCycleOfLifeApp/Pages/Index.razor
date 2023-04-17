@@ -5,9 +5,15 @@
 
 <SplitView>
     <LeftContent>
-        <CycleButton @ref="@CurrentRef" OnClick="@HandleCount">
-            Press me
-        </CycleButton>
+        <DemoList ShowDemo="ShowDemo"></DemoList>
+        @switch (ActiveDemo)
+        {
+            case 1:
+                <CycleButton @ref="@CurrentRef" OnClick="@HandleCount">
+                    Press me
+                </CycleButton>
+                break;
+        }
 
         Counter: @Count
     </LeftContent>
@@ -19,6 +25,7 @@
 @code
 {
     private BaseCycleComponent CurrentRef { get; set; }
+    private int ActiveDemo { get; set; }
 
     protected override void OnInitialized()
     {
@@ -30,5 +37,10 @@
     private void HandleCount()
     {
         Count++;
+    }
+
+    private void ShowDemo(int nr)
+    {
+        ActiveDemo = nr;
     }
 }

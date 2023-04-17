@@ -1,0 +1,23 @@
+﻿<h3>DemoContainer</h3>
+
+<div class="demo-list">
+    <ol>
+        <li><a href="" @onclick="@(()=>HandleDemo(1))">Simple button</a></li>
+    </ol>
+</div>
+
+@code {
+    [Parameter]
+    public int DemoNr { get; set; }
+
+    [Parameter]
+    public EventCallback<int> ShowDemo { get; set; }
+
+    private async Task HandleDemo(int nr)
+    {
+        if (ShowDemo.HasDelegate)
+        {
+            await ShowDemo.InvokeAsync(nr);
+        }
+    }
+}
