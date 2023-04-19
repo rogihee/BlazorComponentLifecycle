@@ -1,21 +1,31 @@
 ﻿@page "/"
+@using BlazorCycleOfLifeApp.Components.Demos
 
 @inject LifeCycleService LifeCycleService
 <h1>Blazor Cycle of Life</h1>
 
 <SplitView>
     <LeftContent>
-        <DemoList ShowDemo="ShowDemo"></DemoList>
-        @switch (ActiveDemo)
-        {
-            case 1:
-                <CycleButton @ref="@CurrentRef" OnClick="@HandleCount">
-                    Press me
-                </CycleButton>
-                break;
-        }
-
-        Counter: @Count
+        <div class="demo-view">
+            <DemoList ShowDemo="@ShowDemo"/>
+            <div class="demo-container">
+                <h2>@ActiveDemo</h2>
+                @switch (ActiveDemo)
+                {
+                    case nameof(CycleButton):
+                        <CycleButton @ref="@CurrentRef" OnClick="@HandleCount">
+                            Press me
+                        </CycleButton>
+                        break;
+                    case nameof(EventCallbackButton):
+                        <EventCallbackButton @ref="@CurrentRef"/>
+                        break;
+                }
+            </div>
+            <div class="counter-result">
+                Counter: @Count
+            </div>
+        </div>
     </LeftContent>
     <RightContent>
         <LifeCycleView View="@CurrentRef?.LifeCycleHistory"/>
@@ -25,7 +35,7 @@
 @code
 {
     private BaseCycleComponent CurrentRef { get; set; }
-    private int ActiveDemo { get; set; }
+    private string ActiveDemo { get; set; }
 
     protected override void OnInitialized()
     {
@@ -39,8 +49,8 @@
         Count++;
     }
 
-    private void ShowDemo(int nr)
+    private void ShowDemo(string type)
     {
-        ActiveDemo = nr;
+        ActiveDemo = type;
     }
 }
