@@ -2,6 +2,7 @@
     --brand-color: #716790;
     --brand-color-light: #9482b1;
     --background-color: #C0C0C0;
+    --background-color-darker: #d7d7d7;
     --highlight-color: darkgrey;
     --button-color: var(--brand-color-light);
     --button-color-active: var(--brand-color);
@@ -39,10 +40,13 @@ h1:focus {
     outline: none;
 }
 
+h3 {
+    margin: 1rem;
+}
+
 img {
     pointer-events: none; /* Hide Edge Visual Search */
 }
-
 
 button {
     background-color: var(--button-color);

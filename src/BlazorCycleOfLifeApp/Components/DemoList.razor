@@ -1,6 +1,7 @@
 ﻿<div class="demo-list">
-    <h3>Choose a demo</h3>
+    <h2>Choose a demo</h2>
     <InputSelect title="Pick a demo" @bind-Value="@SelectedDemo" @bind-Value:after="@HandleDemo">
+        <option value="pick">Pick a demo</option>
         @foreach (var demo in Demos)
         {
             <option value="@demo">@demo</option>

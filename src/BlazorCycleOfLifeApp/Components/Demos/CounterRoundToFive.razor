@@ -1,0 +1,24 @@
+﻿@inherits BaseCycleComponent
+
+<h3>Count increment by 5: @DisplayCount</h3>
+
+@code {
+    
+    private int DisplayCount => (int)Math.Floor((decimal)Count / 5) * 5;
+
+    [Parameter]
+    public int Count { get; set; }
+
+    private int _lastDisplayCount = 0;
+
+    protected override bool ShouldRender()
+    {
+        if (_lastDisplayCount != DisplayCount)
+        {
+            _lastDisplayCount = DisplayCount;
+            return true;
+        }
+        return false;
+    }
+
+}

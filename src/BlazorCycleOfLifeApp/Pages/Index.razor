@@ -2,6 +2,7 @@
 @using BlazorCycleOfLifeApp.Components.Demos
 
 @inject LifeCycleService LifeCycleService
+@inject StateService StateService
 <h1>Blazor Cycle of Life</h1>
 
 <SplitView>
@@ -9,7 +10,8 @@
         <div class="demo-view">
             <DemoList ShowDemo="@ShowDemo"/>
             <div class="demo-container">
-                <h2>@ActiveDemo</h2>
+                <h3>@ActiveDemo</h3>
+                <div class="demo-components">
                 @switch (ActiveDemo)
                 {
                     case nameof(CycleButton):
@@ -20,7 +22,20 @@
                     case nameof(EventCallbackButton):
                         <EventCallbackButton @ref="@CurrentRef"/>
                         break;
+                    case nameof(CounterStateViaService):
+                        <CycleButton @ref="@CurrentRef" OnClick="@(() => { StateService.SharedCounter++; })">
+                            Press me
+                        </CycleButton>
+                        <CounterStateViaService @ref="@CurrentRef" />
+                        break;
+                    case nameof(CounterRoundToFive):
+                        <CycleButton @ref="@CurrentRef" OnClick="@HandleCount">
+                            Press me
+                        </CycleButton>
+                        <CounterRoundToFive @ref="@CurrentRef" Count="@Count"/>
+                        break;
                 }
+                </div>
             </div>
             <div class="counter-result">
                 Counter: @Count
@@ -43,14 +58,18 @@
     }
 
     private int Count { get; set; }
+    private int EventCount { get; set; }
 
     private void HandleCount()
     {
+        StateHasChanged();
         Count++;
+        StateHasChanged();
     }
 
     private void ShowDemo(string type)
     {
         ActiveDemo = type;
+        StateHasChanged();
     }
 }
