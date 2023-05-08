@@ -1,7 +1,8 @@
 .life-cycle-step {
-    border: 2px solid var(--highlight-color);
-    border-radius: 0.25rem;
-    padding: 0.5rem;
+    background-color: var(--step-fill-color);
+    border: 0.25rem solid var(--step-stroke-color);
+    border-radius: 0.75rem;
+    padding: 0.25rem;
     min-width: 15rem;
     display: flex;
     flex-direction: column;
@@ -15,6 +16,9 @@
     }
 
     .life-cycle-step h3 {
+        font-family: monospace;
+        color: var(--step-text-color);
         text-align: center;
+        margin: 0.25rem;
     }
 

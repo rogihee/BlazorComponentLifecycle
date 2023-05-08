@@ -1,7 +1,16 @@
 .counter {
-    font-family: Courier;
-    font-weight: bold;
+    font-family: monospace;
+    font-weight: 500;
     font-size: 1.5rem;
+    background-color: var(--counter-fill-color);
+    color: var(--step-text-color);
+    border-radius: 50%;
+    border: 0.125rem solid var(--counter-stroke-color);
+    padding: 0.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    align-self: center;
+    text-align: center;
 }
 
 .pulse {
@@ -10,7 +19,7 @@
 
 @keyframes pulse-animation {
     0% {
-        box-shadow: 0 0 0 0 var(--pulse-color);
+        box-shadow: 0 0 0 0 var(--counter-pulse-color);
     }
 
     100% {

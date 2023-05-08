@@ -6,7 +6,12 @@
     --highlight-color: darkgrey;
     --button-color: var(--brand-color-light);
     --button-color-active: var(--brand-color);
-    --pulse-color: rgba(113, 103, 144, 0.4);
+    --step-fill-color: #766793;
+    --step-text-color: white;
+    --step-stroke-color: #595959;
+    --counter-fill-color: #9182D2;
+    --counter-stroke-color: white;
+    --counter-pulse-color: rgba(250, 250, 250, 0.8);
 }
 
 * {
