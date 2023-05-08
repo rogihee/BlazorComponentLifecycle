@@ -4,24 +4,32 @@ public class LifeCycleService
 {
     private static int _instanceCounter = 0;
 
-    public List<LifeCycleHistory> Components { get; init; } = new();
+    public List<ComponentLifeCycleHistory> Components { get; init; } = new();
 
-    public LifeCycleHistory Register<T>(T component) where T: BaseCycleComponent
+    public ComponentLifeCycleHistory Register<T>(T component) where T: BaseCycleComponent
     {
         ArgumentNullException.ThrowIfNull(component);
-        var res = new LifeCycleHistory
+        var res = new ComponentLifeCycleHistory
         {
-            ComponentType = typeof(T),
+            ComponentType = component.GetType(),
             InstanceId = _instanceCounter++
         };
         Components.Add(res);
-        Current ??= component;
+        ComponentsChanged.Invoke();
+        Current ??= res;
         return res;
-    } 
+    }
 
-    private BaseCycleComponent _current;
+    public void Clear()
+    {
+        Components.Clear();
+        _instanceCounter = 0;
+        ComponentsChanged.Invoke();
+    }
 
-    public BaseCycleComponent Current
+    private ComponentLifeCycleHistory _current;
+
+    public ComponentLifeCycleHistory Current
     {
         get => _current;
         set
@@ -31,5 +39,6 @@ public class LifeCycleService
         }
     }
 
+    public Action ComponentsChanged { get; set; }
     public Action CurrentChanged { get; set; }
 }

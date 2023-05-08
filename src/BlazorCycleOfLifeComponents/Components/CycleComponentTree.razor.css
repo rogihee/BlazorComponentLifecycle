@@ -1,0 +1,22 @@
+.cycle-component-tree {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background-color: var(--background-color-darker);
+    border-radius: 0.5rem;
+    width: 100%;
+    padding: 1rem;
+}
+
+.cycle-component {
+    font-family: monospace;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    color: var(--step-text-color);
+    background-color: var(--counter-fill-color);
+}
+    .cycle-component:hover {
+        background-color: var(--counter-fill-color-darker);
+        cursor: pointer;
+    }

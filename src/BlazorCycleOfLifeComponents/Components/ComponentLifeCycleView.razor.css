@@ -1,0 +1,10 @@
+.component-life-cycle-view {
+    display: grid;
+    grid-gap: 1rem;
+    justify-content: center;
+}
+
+    .component-life-cycle-view > h3 {
+        align-items: center;
+       
+    }

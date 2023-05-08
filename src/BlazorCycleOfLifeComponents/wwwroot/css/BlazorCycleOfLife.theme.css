@@ -10,6 +10,7 @@
     --step-text-color: white;
     --step-stroke-color: #595959;
     --counter-fill-color: #9182D2;
+    --counter-fill-color-darker: #6f649f;
     --counter-stroke-color: white;
     --counter-pulse-color: rgba(250, 250, 250, 0.8);
 }

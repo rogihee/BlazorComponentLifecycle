@@ -1,13 +1,14 @@
 ﻿@page "/"
 @using BlazorCycleOfLifeApp.Components.Demos
 
+@inject LifeCycleService LifeCycleService
 @inject StateService StateService
 <h1>Blazor LifeCycle demo</h1>
 
 <SplitView>
     <LeftContent>
         <div class="demo-view">
-            <DemoList ShowDemo="@ShowDemo"/>
+            <DemoList OnChangeDemo="@ShowDemo"/>
             <div class="demo-container">
                 <h3>@ActiveDemo</h3>
                 <div class="demo-components">
@@ -42,7 +43,7 @@
         </div>
     </LeftContent>
     <RightContent>
-        <LifeCycleView View="@CurrentRef?.LifeCycleHistory"/>
+        <LifeCycleView/>
     </RightContent>
 </SplitView>
 
@@ -68,6 +69,7 @@
 
     private void ShowDemo(string type)
     {
+        LifeCycleService.Clear();
         ActiveDemo = type;
         StateHasChanged();
     }

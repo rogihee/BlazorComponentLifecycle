@@ -11,7 +11,7 @@
 
 @code {
     [Parameter]
-    public EventCallback<string> ShowDemo { get; set; }
+    public EventCallback<string> OnChangeDemo { get; set; }
     
     private string SelectedDemo { get; set; }
 
@@ -24,9 +24,9 @@
 
     private async Task HandleDemo()
     {
-        if (ShowDemo.HasDelegate)
+        if (OnChangeDemo.HasDelegate)
         {
-            await ShowDemo.InvokeAsync(SelectedDemo);
+            await OnChangeDemo.InvokeAsync(SelectedDemo);
         }
     }
 }

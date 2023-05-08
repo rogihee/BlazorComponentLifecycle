@@ -1,48 +1,16 @@
-@implements IDisposable
 @inject LifeCycleService LifeCycleService
 
 <div class="life-cycle-view">
-    
-    @if (View != null)
-    {
-        <h2>@View.ComponentType.Name</h2>
-        <LifeCycleStepView Step="LifeCycleStep.SetParametersAsync"
-                           Count="@View.Count(LifeCycleStep.SetParametersAsync)"/>
-        <LifeCycleStepView Step="LifeCycleStep.OnInitialized"
-                           Count="@View.Count(LifeCycleStep.OnInitialized)"/>
-        <LifeCycleStepView Step="LifeCycleStep.OnParametersSet"
-                           Count="@View.Count(LifeCycleStep.OnParametersSet)"/>
-        <LifeCycleStepView Step="LifeCycleStep.OnAfterRender"
-                           Count="@View.Count(LifeCycleStep.OnAfterRender)"/>
-        <LifeCycleStepView Step="LifeCycleStep.ShouldRender"
-                           Count="@View.Count(LifeCycleStep.ShouldRender)"/>
-        <LifeCycleStepView Step="LifeCycleStep.Dispose"
-                           Count="@View.Count(LifeCycleStep.Dispose)"/>
-    }
-    else
-    {
-        <h3>No View selected</h3>
-    }
+    <CycleComponentTree OnClick="@ChangeCurrent"/>
+    <ComponentLifeCycleView View="@LifeCycleService.Current"/>
 </div>
 
 @code
 {
-    [Parameter]
-    public LifeCycleHistory View { get; set; }
-
-    protected override void OnInitialized()
+    private void ChangeCurrent(ComponentLifeCycleHistory component)
     {
-        // CycleOfLifeService.CurrentChanged += StateHasChanged();
+        LifeCycleService.Current = component;
+        StateHasChanged();
     }
 
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-        Console.WriteLine("View: " + View);
-    }
-
-    public void Dispose()
-    {
-        // CycleOfLifeService.CurrentChanged -= StateHasChanged();
-    }
 }

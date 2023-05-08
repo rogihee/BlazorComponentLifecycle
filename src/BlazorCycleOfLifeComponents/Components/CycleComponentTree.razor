@@ -1,0 +1,42 @@
+@implements IDisposable
+
+@inject LifeCycleService LifeCycleService
+
+<h4>Components</h4>
+<div class="cycle-component-tree">
+    
+    @foreach (var component in Components)
+    {
+        <div class="cycle-component" @onclick="@(() => HandleClick(component))">
+            @component.ComponentType.Name
+        </div>
+    }
+</div>
+
+@code
+{
+    [Parameter]
+    public EventCallback<ComponentLifeCycleHistory> OnClick { get; set; }
+
+    private List<ComponentLifeCycleHistory> Components => LifeCycleService.Components;
+
+    protected override void OnInitialized()
+    {
+        LifeCycleService.ComponentsChanged += OnComponentsChanged;
+    }
+    
+    public void Dispose()
+    {
+        LifeCycleService.ComponentsChanged -= OnComponentsChanged;
+    }
+
+    private void OnComponentsChanged()
+    {
+        StateHasChanged();
+    }
+
+    private async Task HandleClick(ComponentLifeCycleHistory component)
+    {
+        await OnClick.InvokeAsync(component);
+    }
+}
