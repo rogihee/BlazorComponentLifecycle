@@ -3,11 +3,11 @@
 @inject LifeCycleService LifeCycleService
 
 @code {
-    private readonly List<LifeCycleEvent> _events = new();
+    //private readonly List<LifeCycleEvent> _events = new();
 
     public ComponentLifeCycleHistory ComponentLifeCycleHistory { get; set; }
 
-    public int Count(LifeCycleStep step) => _events.Count(x => x.Step == step);
+    // public int Count(LifeCycleStep step) => _events.Count(x => x.Step == step);
 
     public override Task SetParametersAsync(ParameterView parameters)
     {
