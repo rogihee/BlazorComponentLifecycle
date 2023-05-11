@@ -77,12 +77,6 @@
         StateHasChanged();
     }
     
-    private void HandleClickViaModel()
-    {
-        CounterModel.Count++;
-        StateHasChanged();
-    }
-    
     private void HandleClickViaService()
     {
         StateService.SharedCounter++;
@@ -97,11 +91,6 @@
             CounterModel.Count++;
         }
         StateHasChanged();
-    }
-    
-    private void HandleClickViaService()
-    {
-        StateService.SharedCounter++;
     }
 
     private void ShowDemo(string type)
