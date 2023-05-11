@@ -88,6 +88,22 @@
         StateService.SharedCounter++;
     }
 
+    private void HandleClickViaModel()
+    {
+        Count++;
+        if (Count % 2 == 0)
+        {
+            // only update the model count when overall count is even, so that gets half the updates
+            CounterModel.Count++;
+        }
+        StateHasChanged();
+    }
+    
+    private void HandleClickViaService()
+    {
+        StateService.SharedCounter++;
+    }
+
     private void ShowDemo(string type)
     {
         LifeCycleService.Clear();
