@@ -19,14 +19,9 @@
                             Press me
                         </CycleButton>
                         break;
-                    case nameof(NoRenderEventButton):
-                        <NoRenderEventButton OnClick="@HandleCount">
-                            Press me
-                        </NoRenderEventButton>
+                    case nameof(EventCallbackButton):
+                        <EventCallbackButton OnClick="@HandleCount"/>
                         break;
-@*                    case nameof(EventCallbackButton):
-                        <EventCallbackButton/>
-                        break;*@
                     case nameof(CounterStateViaService):
                         <CycleButton OnClick="@HandleClickViaService">
                             Count via state service

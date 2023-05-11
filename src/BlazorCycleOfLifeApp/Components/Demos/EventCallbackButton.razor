@@ -1,7 +1,9 @@
-﻿@*@inherits BaseCycleComponent
+﻿@implements IHandleEvent
 
-<button @onclick="@EventUtil.AsNonRenderingEventHandler(HandleClick)">
-    Event call back only
+@inherits BaseCycleComponent
+
+<button @onclick="@OnClick">
+    Press me
 </button>
 
 @code {
@@ -9,12 +11,5 @@
     [Parameter]
     public EventCallback OnClick { get; set; }
     
-    private async Task HandleClick()
-    {
-        if (OnClick.HasDelegate)
-        {
-            await OnClick.InvokeAsync();
-        }
-    }
+    Task IHandleEvent.HandleEventAsync(EventCallbackWorkItem callback, object arg) => callback.InvokeAsync(arg);
 }
-*@
