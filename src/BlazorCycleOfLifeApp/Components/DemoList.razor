@@ -2,9 +2,12 @@
     <h2>Choose a demo</h2>
     <InputSelect title="Pick a demo" @bind-Value="@SelectedDemo" @bind-Value:after="@HandleDemo">
         <option value="pick">Pick a demo</option>
+        @{
+            int nr = 1;
+        }
         @foreach (var demo in Demos)
         {
-            <option value="@demo">@demo</option>
+            <option value="@demo">@(nr++). @demo</option>
         }
     </InputSelect>
 </div>

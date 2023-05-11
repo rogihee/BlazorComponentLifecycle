@@ -1,8 +1,8 @@
-﻿@implements IHandleEvent
+﻿@inherits BaseCycleComponent
 
-@inherits BaseCycleComponent
-
-<button @onclick="@EventUtil.AsNonRenderingEventHandler(HandleClick1)">@ChildContent</button>
+<button @onclick="@OnClick">
+    @ChildContent
+</button>
 
 @code {
 
@@ -12,13 +12,4 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    private async Task HandleClick1()
-    {
-        if (OnClick.HasDelegate)
-        {
-            await OnClick.InvokeAsync();
-        }
-    }
-
-    Task IHandleEvent.HandleEventAsync(EventCallbackWorkItem callback, object arg) => callback.InvokeAsync(arg);
 }

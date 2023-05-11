@@ -13,6 +13,7 @@
 
     protected override bool ShouldRender()
     {
+        base.ShouldRender(); // for cycle only
         if (_lastDisplayCount == DisplayCount) return false;
         _lastDisplayCount = DisplayCount;
         return true;

@@ -2,6 +2,10 @@
     
 }
 
+.demo-container {
+
+}
+
 .demo-view {
     display: flex;
     flex-direction: column;
@@ -12,4 +16,10 @@
     margin: 1rem;
     padding: 1rem;
     background: var(--background-color-darker);
+}
+
+.counter-result {
+    margin: 1rem;
+    font-size: 20px;
+    font-weight: bold;
 }

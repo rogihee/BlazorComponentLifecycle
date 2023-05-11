@@ -1,14 +1,19 @@
-﻿@*@inherits BaseCycleComponent
+﻿@*@implements IHandleEvent
+*@
+@inherits BaseCycleComponent
 
 <button @onclick="@EventUtil.AsNonRenderingEventHandler(HandleClick)">
-    Event call back only
+    @ChildContent
 </button>
 
 @code {
 
     [Parameter]
     public EventCallback OnClick { get; set; }
-    
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
     private async Task HandleClick()
     {
         if (OnClick.HasDelegate)
@@ -16,5 +21,6 @@
             await OnClick.InvokeAsync();
         }
     }
+
+    // Task IHandleEvent.HandleEventAsync(EventCallbackWorkItem callback, object arg) => callback.InvokeAsync(arg);
 }
-*@

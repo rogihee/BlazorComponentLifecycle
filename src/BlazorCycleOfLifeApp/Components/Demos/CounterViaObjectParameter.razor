@@ -1,0 +1,9 @@
+﻿@inherits BaseCycleComponent
+
+<h3>Count: @Counter?.Count</h3>
+
+@code {
+
+    [Parameter, EditorRequired]
+    public CounterModel Counter { get; set; }
+}

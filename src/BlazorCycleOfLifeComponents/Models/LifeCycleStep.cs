@@ -5,7 +5,7 @@ public enum LifeCycleStep
     SetParametersAsync,
     OnInitialized,
     OnParametersSet,
-    OnAfterRender,
     ShouldRender,
+    OnAfterRender,
     Dispose
 }
