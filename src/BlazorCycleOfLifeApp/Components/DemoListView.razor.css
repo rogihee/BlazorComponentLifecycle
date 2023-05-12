@@ -1,0 +1,6 @@
+﻿.demo-list > h4 {
+    color: var(--text-grey);
+}
+.demo-list ::deep select {
+    font-size: 1.25rem;
+}

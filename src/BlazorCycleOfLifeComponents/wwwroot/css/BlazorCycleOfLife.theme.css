@@ -3,6 +3,9 @@
     --brand-color-light: #9482b1;
     --background-color: #C0C0C0;
     --background-color-darker: #d7d7d7;
+    --text-grey: #707070;
+    --demo-title: var(--brand-color);
+    --demo-description: var(--text-grey);
     --highlight-color: darkgrey;
     --button-color: var(--brand-color-light);
     --button-color-active: var(--brand-color);

@@ -1,0 +1,26 @@
+﻿
+<div class="demo-list">
+    <h4>Choose a demo</h4>
+    <InputSelect title="Pick a demo" @bind-Value="@SelectedDemo" @bind-Value:after="@HandleDemoChange">
+        <option value="pick">Pick a demo</option>
+        @foreach (var demo in DemoList.All)
+        {
+            <option value="@demo.Nr">@demo.Nr. @demo.Title</option>
+        }
+    </InputSelect>
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback<int> OnChangeDemo { get; set; }
+    
+    private int SelectedDemo { get; set; }
+
+    private async Task HandleDemoChange()
+    {
+        if (OnChangeDemo.HasDelegate)
+        {
+            await OnChangeDemo.InvokeAsync(SelectedDemo);
+        }
+    }
+}

@@ -1,47 +1,56 @@
 ﻿@page "/"
-@using BlazorCycleOfLifeApp.Components.Demos
 
 @inject LifeCycleService LifeCycleService
 @inject StateService StateService
+
 <h1>Blazor LifeCycle demo</h1>
 
 <SplitView>
     <LeftContent>
         <div class="demo-view">
-            <DemoList OnChangeDemo="@ShowDemo"/>
+            <DemoListView OnChangeDemo="@ShowDemo"/>
             <div class="demo-container">
-                <h3>@ActiveDemo</h3>
-                <div class="demo-components">
-                @switch (ActiveDemo)
+                @if (ActiveDemo != null)
                 {
-                    case nameof(CycleButton):
-                        <CycleButton OnClick="@HandleCount">
-                            Press me
-                        </CycleButton>
-                        break;
-                    case nameof(EventCallbackButton):
-                        <EventCallbackButton OnClick="@HandleCount"/>
-                        break;
-                    case nameof(CounterStateViaService):
-                        <CycleButton OnClick="@HandleClickViaService">
-                            Count via state service
-                        </CycleButton>
-                        <CounterStateViaService />
-                        break;
-                    case nameof(CounterViaObjectParameter):
-                        <CycleButton OnClick="@HandleClickViaModel">
-                            Count via model
-                        </CycleButton>
-                        <CounterViaObjectParameter Counter="@CounterModel" />
-                        break;
-                    case nameof(CounterRoundToFive):
-                        <CycleButton OnClick="@HandleCount">
-                            Count round to five
-                        </CycleButton>
-                        <CounterRoundToFive Count="@Count"/>
-                        break;
+                    @*<h3>@ActiveDemo.Nr. @ActiveDemo.Title</h3>*@
+                    <h4>@ActiveDemo.Description</h4>
+
+                    <div class="demo-components">
+                        @switch (ActiveDemo.Nr)
+                        {
+                            case 1:
+                                <CycleButton OnClick="@HandleCount">
+                                    Press me
+                                </CycleButton>
+                                break;
+                            case 2:
+                                <CycleButton OnClick="@HandleClickViaService">
+                                    Count via state service
+                                </CycleButton>
+                                <CounterStateViaService />
+                                break;
+                            case 3:
+                                <EventCallbackButton OnClick="@HandleCount" />
+                                break;
+                            case 4:
+                                <CycleButton OnClick="@HandleClickViaModel">
+                                    Count via model
+                                </CycleButton>
+                                <CounterViaObjectParameter Counter="@CounterModel" />
+                                break;
+                            case 5:
+                                <CycleButton OnClick="@HandleCount">
+                                    Count round to five
+                                </CycleButton>
+                                <CounterRoundToFive Count="@Count"/>
+                                break;
+                        }
+                    </div>
                 }
-                </div>
+                else
+                {
+                    <div class="pick-demo">No demo selected</div>
+                }
             </div>
             <div class="counter-result">
                 The count: @Count
@@ -55,12 +64,7 @@
 
 @code
 {
-    private string ActiveDemo { get; set; }
-
-    protected override void OnInitialized()
-    {
-        
-    }
+    private DemoModel ActiveDemo { get; set; }
 
     private int Count { get; set; }
     private CounterModel CounterModel { get; set; } = new();
@@ -88,11 +92,11 @@
         StateHasChanged();
     }
 
-    private void ShowDemo(string type)
+    private void ShowDemo(int nr)
     {
         Count = 0;
         LifeCycleService.Clear();
-        ActiveDemo = type;
+        ActiveDemo = DemoList.All.Single(x=>x.Nr == nr);
         StateHasChanged();
     }
 
